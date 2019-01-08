@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'stretch',
     shadowColor: '#000000',
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.4,
     shadowRadius: 2,
     shadowOffset: {
       height: 1,
