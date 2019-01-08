@@ -64,6 +64,7 @@ export default class FAB extends Component {
     iconTextComponent: PropTypes.element,
     visible: PropTypes.bool,
     snackOffset: PropTypes.number,
+    size: PropTypes.number,
     style: ViewPropTypes.style,
   };
 
@@ -73,6 +74,7 @@ export default class FAB extends Component {
     onClickAction: noop,
     iconTextComponent: <Text>+</Text>,
     visible: true,
+    size: 24,
     snackOffset: 0,
     style: {},
   };
@@ -187,11 +189,13 @@ export default class FAB extends Component {
                   { scaleX: translateValue },
                   { rotate: rotateInterpolate },
                 ],
-                fontSize: 24,
+                fontSize: this.props.size,
+                paddingTop: this.props.paddingTop,
               }}
             >
               {React.cloneElement(iconTextComponent, { style: {
-                fontSize: 24,
+                fontSize: this.props.size,
+                paddingTop: this.props.paddingTop,
                 color: iconTextColor,
               } })}
             </Animated.View>
