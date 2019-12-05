@@ -100,11 +100,11 @@ export default class FAB extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { translateValue, shiftValue } = this.state;
-    const { visible } = this.props;
+    const wasVisible = prevProps.visible;
 
-    if ((nextProps.visible) && (!visible)) {
+    if ((this.props.visible) && (!wasVisible)) {
       Animated.timing(
         translateValue,
         {
@@ -113,7 +113,7 @@ export default class FAB extends Component {
           easing: sharpEasingValues.entry,
         },
       ).start();
-    } else if ((!nextProps.visible) && (visible)) {
+    } else if ((!this.props.visible) && (wasVisible)) {
       Animated.timing(
         translateValue,
         {
@@ -123,8 +123,9 @@ export default class FAB extends Component {
         },
       ).start();
     }
-    if (nextProps.snackOffset !== this.props.snackOffset) {
-      if (nextProps.snackOffset === 0) {
+
+    if (this.props.snackOffset !== prevProps.snackOffset) {
+      if (this.props.snackOffset === 0) {
         Animated.timing(
           shiftValue,
           {
@@ -133,12 +134,12 @@ export default class FAB extends Component {
             easing: moveEasingValues.exit,
           },
         ).start();
-      } else if (nextProps.snackOffset !== 0) {
+      } else if (this.props.snackOffset !== 0) {
         Animated.timing(
           shiftValue,
           {
             duration: durationValues.entry,
-            toValue: 20 + nextProps.snackOffset,
+            toValue: 20 + this.props.snackOffset,
             easing: moveEasingValues.entry,
           },
         ).start();
